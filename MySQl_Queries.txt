@@ -1,0 +1,41 @@
+1. Write a SQL query to Rename the column name?
+
+		
+	CODE :   ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+
+	
+	// Explanation :
+			
+			ALTER is used to make changes to the table and not the contents inside it.
+			TABLE table_name is specified to select the table
+			RENAME is a method used to rename 
+				
+
+
+2. What is Query to display first 5 Records from Employee table?
+
+
+	CODE  :   SELECT * from Employee where rownum>=5;
+
+
+
+
+3. What is Query to display last 5 Records from Employee table?
+
+
+	CODE  :   SELECT * from Employee where rownum<=5;
+
+
+
+
+4. How Can i create table with same structure with data of Employee table?
+
+	CODE  :   CREATE TABLE Employee1 as SELECT from Employee;
+
+			
+	// Similarly if we want to copy only the data structure of the table and not the datas inside it
+
+       		
+	CODE  :   CREATE TABLE Employee1 as SELECT from Employee WHERE 1=2;
+
+		// here all columns of the original table is copied but no rows are copied because, of the condition "WHERE 1=			2" is always false 

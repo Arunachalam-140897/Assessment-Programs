@@ -1,0 +1,45 @@
+package programs;
+
+import java.util.Scanner;
+
+public class String_program {
+
+	public static void main(String[] args) {
+		
+		//initializing scanner method
+		
+		System.out.println("Enter 1st sentence   :    ");
+		Scanner  sc = new Scanner(System.in);
+		String first = sc.nextLine();
+		System.out.println("Enter 2nd sentence  :    ");
+		String second = sc.nextLine();
+		
+		//calculating and displaying length of each string
+		System.out.println("The Length of the First string is   ' "+ first.length()+ " '  letters\n" );
+		System.out.println("The Length of the Second string is   '"+second.length()+"'  letters\n");
+		
+		// combining both strings using concatenation
+		String third = first+" "+second;
+		System.out.println("The combined sentence from the given strings is     '   "+third+"   '");
+	
+		
+		// displaying the length of the combined string
+		System.out.println("The Length of the entire sentence is   '"+third.length()+"'   letters\n");
+		
+		//replace a word in the sentence
+		System.out.println("Enter the word to replace as entered above   :    ");
+		String org = sc.nextLine();
+		
+		System.out.println("Enter a alternate word to replace in the sentence  :     ");
+		String rep = sc.nextLine();
+		
+        //replacing original word with alternate word while ignoring case sensitivity
+		//"(?!)" is a method used to ignore case sensitivity similar to "\\s" is used to specify a single white space in a string 
+		String replace = third.replaceAll("(?i)"+org, rep);
+        
+        System.out.println("The Final Sentence after changes is     :     "+replace);
+		
+
+    }
+
+}

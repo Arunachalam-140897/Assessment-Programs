@@ -1,0 +1,55 @@
+public class codes {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "E:\\Testing\\jars\\jars.chromedriver.exe");
+	    	WebDriver browser=new EdgeDriver();
+		browser.manage().window().maximize();
+		browser.manage().deleteAllCookies();
+		browser.navigate().to("https://www.amazon.in/");
+		browser.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		
+		String homepage=browser.getWindowHandle();
+		
+		browser.findElement(By.xpath("//*[@id=\"nav-xshop\"]/a[4]")).sendKeys(Keys.CONTROL,Keys.ENTER);
+		browser.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		
+		String newpage = null;
+		Set<String> handles = browser.getWindowHandles();
+		for(String handle:handles) {
+			
+			if(handle!=homepage) {
+				
+				browser.switchTo().window(handle);
+				newpage=handle;
+			}
+			
+		}
+		
+		browser.findElement(By.id("twotabsearchtextbox")).sendKeys("Nothing Phone 1"+Keys.ENTER);
+		Thread.sleep(5000);
+		
+		browser.switchTo().window(homepage);
+		
+		WebElement searchbox=browser.findElement(By.id("twotabsearchtextbox"));
+		
+		Actions act=new Actions(browser);
+		act.moveToElement(searchbox).perform();
+		Thread.sleep(2000);
+		searchbox.sendKeys("iphone 12");
+		Thread.sleep(3000);
+		searchbox.clear();
+		
+	
+		
+		browser.switchTo().window(newpage);
+		Thread.sleep(2000);
+		browser.close();
+		browser.switchTo().window(homepage);
+		Thread.sleep(2000);
+		browser.close();
+		
+
+	}
+
+}
