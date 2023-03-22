@@ -1,0 +1,72 @@
+public class CrossBrowserScript {
+
+	//initializing driver as global variable
+	WebDriver driver;
+
+	@BeforeTest
+	
+	//to get inputs from the testng.xml file
+	@Parameters("browser")
+
+	public void setup(String browser) throws Exception 
+		
+		{
+		
+		//to check if value received is 'firefox' and opening the browser
+		if(browser.equalsIgnoreCase("firefox"))
+
+			{
+				System.setProperty("webdriver.gecko.driver", "path to the driver");
+				driver = new FirefoxDriver();
+			}
+		
+
+		//to check if value received is 'chrome' and opening the browser
+		else if(browser.equalsIgnoreCase("chrome"))
+
+
+			{
+				System.setProperty("webdriver.chrome.driver","path to the driver");
+				driver = new ChromeDriver();
+			}
+	
+
+		//to check if value received is 'edge' and opening the browser
+				
+			else if(browser.equalsIgnoreCase("Edge"))
+
+				{
+					System.setProperty("webdriver.edge.driver","path to the driver");
+					driver = new EdgeDriver();
+				}
+		else
+			{
+				//if value is empty or not matching, then exception is created to handle error
+				throw new Exception("Browser is not correct");
+			}
+		
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			
+			}
+	
+	
+
+	@Test
+	public void testParameterWithXML() throws InterruptedException
+
+		{
+			driver.navigate().to("https://www.amazon.in/");
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+
+			WebElement searchbox=browser.findElement(By.id("twotabsearchtextbox"));
+		
+			Actions act=new Actions(browser);
+			act.moveToElement(searchbox).perform();
+			Thread.sleep(2000);
+			searchbox.sendKeys("iphone 12"+Keys.ENTER);
+			Thread.sleep(3000);
+			driver.navigate().back();
+			Thread.sleep(3000);
+			browser.close();
+		}
+}

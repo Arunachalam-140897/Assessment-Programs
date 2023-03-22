@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" thread-count="2" parallel="tests" >
+<test name="ChromeTest">
+
+//giving chrome as input to initiate test on chrome browser
+<parameter name="browser" value="Chrome" />
+
+<classes>
+<class name="parallelTest.CrossBrowserScript">
+</class>
+</classes>
+</test>
+<test name="FirefoxTest">
+
+//giving firefox as input to initiate test on firefox browser
+<parameter name="browser" value="Firefox" />
+
+<classes>
+<class name="parallelTest.CrossBrowserScript">
+</class>
+</classes>
+
+
+</test>
+<test name="EdgeTest">
+
+//giving edge as input to initiate test on edge browser
+<parameter name="browser" value="Edge" />
+
+<classes>
+<class name="parallelTest.CrossBrowserScript">
+</class>
+</classes>
+</test>
+
+</suite>
